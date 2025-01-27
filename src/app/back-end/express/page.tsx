@@ -11,7 +11,6 @@ import {
   FaClipboardCheck 
 } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
 
 export default function ExpressBasico() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -163,8 +162,6 @@ $ npm install express
           <DiscussionEmbed shortname="roadmapdev" config={disqusConfig} />
         </section>
       </main>
-
-      <SpotifyPlayer />
     </div>
   );
 }
