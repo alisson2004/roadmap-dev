@@ -1,7 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // Definindo o tipo para as configurações
@@ -66,26 +65,6 @@ export function SettingsDialog({
           </div>
           
           {/* Outras configurações do painel... */}
-          <div className="flex items-center justify-between">
-            <Label htmlFor="notifications" className="flex flex-col gap-1">
-              <span>Show browser notifications</span>
-              <span className="font-normal text-sm text-gray-400">(beta)</span>
-            </Label>
-            <Switch
-              id="notifications"
-              checked={settings.notifications}
-              onCheckedChange={(checked) => onSettingsChange({ ...settings, notifications: checked })}
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Label htmlFor="spotify">Show Spotify playlist</Label>
-            <Switch
-              id="spotify"
-              checked={settings.spotify}
-              onCheckedChange={(checked) => onSettingsChange({ ...settings, spotify: checked })}
-            />
-          </div>
 
           <div className="grid gap-2">
             <Label htmlFor="playlist">Select Playlist:</Label>
