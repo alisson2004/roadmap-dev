@@ -1,16 +1,14 @@
-/// <reference lib="react" />
-
-import type { FC } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { FiChevronDown } from "react-icons/fi"
+import React, { FC } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiChevronDown } from "react-icons/fi";
 
 interface RoadmapSectionProps {
-  title: string
-  icon: string | JSX.Element // Alteração aqui
-  items: { name: string; link: string }[] 
-  color: string
-  isExpanded: boolean
-  onToggle: () => void
+  title: string;
+  icon: React.ReactNode;  // Alterado para React.ReactNode
+  items: { name: string; link: string }[];
+  color: string;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
 const RoadmapSection: FC<RoadmapSectionProps> = ({ title, icon, items, color, isExpanded, onToggle }) => {
@@ -19,7 +17,7 @@ const RoadmapSection: FC<RoadmapSectionProps> = ({ title, icon, items, color, is
       <button className="w-full p-6 text-left focus:outline-none" onClick={onToggle}>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <span className="text-4xl mr-4">{icon}</span> {/* Aqui o 'icon' pode ser um emoji ou componente JSX */}
+            <span className="text-4xl mr-4">{icon}</span> {/* O 'icon' pode ser agora qualquer tipo válido */}
             <h2 className="text-2xl font-semibold">{title}</h2>
           </div>
           <FiChevronDown
@@ -54,7 +52,7 @@ const RoadmapSection: FC<RoadmapSectionProps> = ({ title, icon, items, color, is
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
-export default RoadmapSection
+export default RoadmapSection;
