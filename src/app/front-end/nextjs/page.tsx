@@ -11,7 +11,7 @@ import {
   FaClipboardCheck,
 } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
+
 
 export default function NextJS() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -252,8 +252,6 @@ export default function NextJS() {
           <DiscussionEmbed shortname="roadmapdev" config={disqusConfig} />
         </section>
       </main>
-
-      <SpotifyPlayer />
     </div>
   );
 }

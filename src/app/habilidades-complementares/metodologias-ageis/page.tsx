@@ -10,7 +10,7 @@ import {
   FaClipboardCheck
 } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
+
 
 export default function AgileMethodology() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -178,7 +178,6 @@ As metodologias ágeis visam aumentar a eficiência e flexibilidade no desenvolv
         </section>
       </main>
 
-      <SpotifyPlayer />
     </div>
   );
 }

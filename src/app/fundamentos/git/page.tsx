@@ -11,7 +11,6 @@ import {
   FaClipboardCheck 
 } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
 
 export default function GitGitHub() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -186,8 +185,6 @@ git push origin master`}
           <DiscussionEmbed shortname="roadmapdev" config={disqusConfig} />
         </section>
       </main>
-
-      <SpotifyPlayer />
     </div>
   );
 }

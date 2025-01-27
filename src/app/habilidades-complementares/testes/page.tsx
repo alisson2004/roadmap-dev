@@ -13,7 +13,7 @@ import {
   FaCheckCircle
 } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
+
 
 export default function TDDWithNode() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -225,8 +225,6 @@ export default function TDDWithNode() {
           <DiscussionEmbed shortname="roadmapdev" config={disqusConfig} />
         </section>
       </main>
-
-      <SpotifyPlayer />
     </div>
   );
 }

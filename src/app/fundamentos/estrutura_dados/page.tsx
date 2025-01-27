@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { FaCode, FaListOl, FaSun, FaMoon, FaComments, FaBook, FaChalkboardTeacher } from "react-icons/fa"
 import { DiscussionEmbed } from "disqus-react"
-import SpotifyPlayer from '@/components/ui/spotifyPlayer'
 
 export default function LogicaDeProgramacao() {
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -203,8 +202,6 @@ export default function LogicaDeProgramacao() {
           <DiscussionEmbed shortname="roadmapdev" config={disqusConfig} />
         </section>
       </main>
-
-      <SpotifyPlayer /> {}
     </div>
   )
 }

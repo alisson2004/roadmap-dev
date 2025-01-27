@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { FaDocker, FaListOl, FaSun, FaMoon, FaComments, FaBook, FaChalkboardTeacher } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
 
 export default function DockerPage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -182,7 +181,7 @@ export default function DockerPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:underline"
-              > Docker para Iniciantes: Minicurso
+              > Docker para Iniciantes
               </a>
             </li>
           </ul>
@@ -196,8 +195,6 @@ export default function DockerPage() {
           <DiscussionEmbed shortname="roadmapdev" config={disqusConfig} />
         </section>
       </main>
-
-      <SpotifyPlayer />
     </div>
   );
 }

@@ -11,7 +11,7 @@ import {
   
 } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
+
 
 export default function LearnEnglish() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -184,8 +184,6 @@ Isso ajudará na compreensão auditiva.`}
           <DiscussionEmbed shortname="roadmapdev" config={disqusConfig} />
         </section>
       </main>
-
-      <SpotifyPlayer />
     </div>
   );
 }
