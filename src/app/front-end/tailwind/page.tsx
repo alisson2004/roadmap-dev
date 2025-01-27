@@ -11,7 +11,7 @@ import {
   FaClipboardCheck 
 } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
+
 
 export default function TailwindCSS() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -227,7 +227,6 @@ export default defineConfig({
         </section>
       </main>
 
-      <SpotifyPlayer />
     </div>
   );
 }

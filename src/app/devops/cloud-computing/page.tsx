@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { FaDocker, FaListOl, FaSun, FaMoon, FaComments, FaBook, FaChalkboardTeacher } from "react-icons/fa";
 import { DiscussionEmbed } from "disqus-react";
-import SpotifyPlayer from "@/components/ui/spotifyPlayer";
+
 
 export default function DockerPage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -197,7 +197,6 @@ export default function DockerPage() {
         </section>
       </main>
 
-      <SpotifyPlayer />
     </div>
   );
 }

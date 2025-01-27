@@ -1,12 +1,13 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate"; // Importação do plugin corrigida
 
 export default {
-  darkMode: ["class"], // Adicionado para corresponder ao novo arquivo
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{ts,tsx}", // Adicionado para incluir qualquer arquivo .ts ou .tsx na pasta src
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -14,8 +15,8 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))", // Atualizado para usar hsl
-        foreground: "hsl(var(--foreground))", // Atualizado para usar hsl
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -52,7 +53,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"), // Adicionado o plugin de animações
-  ],
+  plugins: [tailwindcssAnimate], // Uso do plugin atualizado
 } satisfies Config;
