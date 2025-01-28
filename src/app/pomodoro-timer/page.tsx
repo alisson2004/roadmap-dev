@@ -1,33 +1,35 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Settings, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Toggle } from "@/components/ui/toggle"
 import { SettingsDialog } from "@/components/settings-dialog"
-import SpotifyPlayer from "@/components/ui/spotifyPlayers2" // Adicionando o import
+import SpotifyPlayer from "@/components/ui/spotifyPlayers2"
 
 export default function PomodoroTimer() {
   const [mode, setMode] = useState<"study" | "relax">("study")
-  const [timeLeft, setTimeLeft] = useState(50 * 60) // Default to 50 minutes for study mode
+  const [timeLeft, setTimeLeft] = useState(50 * 60) 
   const [isActive, setIsActive] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [settings, setSettings] = useState<{
-    theme: "light" | "dark" // Corrigido para aceitar apenas esses dois valores
+    theme: "light" | "dark"
     notifications: boolean
     spotify: boolean
     playlist: string
     studyTime: number
     relaxTime: number
   }>({
-    theme: "light", // Inicializando com um valor válido
+    theme: "light",
     notifications: false,
     spotify: false,
-    playlist: "Nu jazz", // Define a playlist padrão
-    studyTime: 50, // default study time in minutes
-    relaxTime: 15, // default relax time in minutes
+    playlist: "Nu jazz",
+    studyTime: 50,
+    relaxTime: 15,
   })
+
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   const playlists: Record<"Nu jazz" | "Jazz/lofi hi hop radio chill beats to relax/study" | "Lofi Brasileiro" | "Anime", string> = {
     "Nu jazz": "https://open.spotify.com/embed/playlist/4BRXb3PvWe9DVzJMZOEh3M?utm_source=generator",
@@ -43,12 +45,16 @@ export default function PomodoroTimer() {
       interval = setInterval(() => {
         setTimeLeft((time) => time - 1)
       }, 1000)
-    } else if (timeLeft === 0) {
+    } else if (timeLeft === 0 && isActive) { 
       setIsActive(false)
       if (settings.notifications) {
         new Notification("Timer Complete!", {
           body: `Your ${mode} session is complete!`,
         })
+      }
+
+      if (audioRef.current) {
+        audioRef.current.play()
       }
     }
 
@@ -64,14 +70,19 @@ export default function PomodoroTimer() {
   const handleReset = () => {
     setTimeLeft(mode === "study" ? settings.studyTime * 60 : settings.relaxTime * 60)
     setIsActive(false)
+
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
   }
 
   const handleResetAll = () => {
     setSettings({
-      theme: "light", // Resetando para o valor "light"
+      theme: "light",
       notifications: false,
       spotify: false,
-      playlist: "Nu jazz", // Resetar a playlist para a padrão
+      playlist: "Nu jazz",
       studyTime: 50,
       relaxTime: 15,
     })
@@ -81,20 +92,19 @@ export default function PomodoroTimer() {
   const handleModeChange = (newMode: "study" | "relax") => {
     setMode(newMode)
     setTimeLeft(newMode === "study" ? settings.studyTime * 60 : settings.relaxTime * 60)
-    setIsActive(false) // Pause when mode changes
+    setIsActive(false)
   }
 
   const handleThemeChange = () => {
     setSettings((prevSettings) => ({
       ...prevSettings,
-      theme: prevSettings.theme === "light" ? "dark" : "light", // Alternando entre "light" e "dark"
+      theme: prevSettings.theme === "light" ? "dark" : "light",
     }))
   }
 
   const handleTimeChange = (timeType: "studyTime" | "relaxTime", value: number) => {
     setSettings((prevSettings) => {
       const newSettings = { ...prevSettings, [timeType]: value }
-      // Atualiza o tempo restante com base nas novas configurações
       setTimeLeft(
         mode === "study" ? newSettings.studyTime * 60 : newSettings.relaxTime * 60
       )
@@ -154,7 +164,7 @@ export default function PomodoroTimer() {
             <p className="text-sm text-center text-gray-300">Spotify playlist widget:</p>
             <iframe
               style={{ borderRadius: "12px" }}
-              src={playlists[settings.playlist as keyof typeof playlists]} // Garantindo o tipo correto
+              src={playlists[settings.playlist as keyof typeof playlists]}
               width="100%"
               height="352"
               frameBorder="0"
@@ -174,10 +184,11 @@ export default function PomodoroTimer() {
         onResetAll={handleResetAll}
         onThemeChange={handleThemeChange}
         onTimeChange={handleTimeChange}
-        onPlaylistChange={handlePlaylistChange} // Passa a função de mudança de playlist
+        onPlaylistChange={handlePlaylistChange}
       />
       <SpotifyPlayer playlist={settings.playlist} />
 
+      <audio ref={audioRef} src="/audio/Seigi_No_kari.mp3" preload="auto" />
     </div>
   )
 }
